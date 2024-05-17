@@ -1,14 +1,7 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
-  <title>Lista de itens</title>
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline ">
-    Hello world!
-  </h1>
-</body>
-</html>
+@extends('layout.mian')
+@section('title', 'ArmazenProject')
+@section('content')
+
+
+    <h1  >Ola</h1>
+@endsection
