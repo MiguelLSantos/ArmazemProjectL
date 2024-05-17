@@ -12,33 +12,37 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         $user = User::query()->where('email', $request->email)->first();
+
         if (is_null($user)) {
-            return response()->json([
-                'data' => [
-                    'Status' => 'Usuario não encontrado!',
-                ]
-            ], 404);
+            return back()->withErrors([
+                'email' => 'Usuário não encontrado!',
+            ]);
         } else {
             if (Hash::check($request->password, $user->password)) {
                 $credenciais = $request->only(['email', 'password',]);
-                if (!$token = auth()->attempt($credenciais)) {
-                    abort(401, 'Pode não!');
+
+                if (!Auth::attempt($credenciais)) {
+                    return back()->withErrors([
+                        'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
+                    ]);
                 }
-                // Retornar todos os dados do usuário junto com o token
-                return response()->json([
-                    'token' => $token,
-                    'user' => $user
-                ], 200);
+
+                // Redirecionar para a página inicial após o login bem-sucedido
+                return redirect()->intended('/');
             } else {
-                return response()->json([
-                    'data' => [
-                        'Status' => 'Senha incoreta!',
-                    ]
-                ], 401);
+                return back()->withErrors([
+                    'password' => 'Senha incorreta!',
+                ]);
             }
         }
     }
+
 
 
     function getUserByToken()
