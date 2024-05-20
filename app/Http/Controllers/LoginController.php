@@ -54,22 +54,6 @@ class LoginController extends Controller
             return response('Usuario não encontrado!', 404);
         }
     }
-
-    public function tokenById(String $id)
-    {
-
-        $token =
-            auth()->tokenById($id);
-        return response()->json([
-            'data' => [
-                'Status' => 'Sucesso!',
-                'token' => $token,
-                'token_type' => 'bearer',
-                'expires_in' => auth()->factory()->getTTL() * 60,
-            ]
-        ]);
-    }
-
     public function logout()
     {
         try {
