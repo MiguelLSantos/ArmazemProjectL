@@ -20,12 +20,12 @@ class ItenController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $id)
+    public function store(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = auth()->user();
         $credenciais = $user->only(['id', 'empresa_id']);
         $data = $request->all();
-        return Iten::create([
+        Iten::create([
             'codigo' => $data['codigo'],
             'nome' => $data['nome'],
             'categoria' => $data['categoria'],
@@ -35,6 +35,7 @@ class ItenController extends Controller
             'user_id' => $credenciais['id'],
             'empresa_id' => $credenciais['empresa_id'],
         ]);
+        return redirect('/');
     }
 
     /**
@@ -80,9 +81,10 @@ class ItenController extends Controller
                     'Erro' => 'Empresa não tem itens cadastrados'
                 ], 401);
             } else {
-                $pdf = Pdf::loadView('pdf', ['itens' => $itens])->setPaper('a4', 'portrait');
+                $pdf = Pdf::loadView('model.pdf', ['itens' => $itens])->setPaper('a4', 'portrait');
 
-                return $pdf->download('relatorio_de_itens.pdf');
+                 $pdf->download('relatorio_de_itens.pdf');
+                return redirect('/');
             }
         }
 

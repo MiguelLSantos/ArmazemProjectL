@@ -19,4 +19,6 @@ Route::get('/login', function () {
 //Ações
 Route::post('/cadastro/createUser', [UserController::class, 'store']);// Ação do cadastro
 Route::post('/cadastro/loginUser', [LoginController::class, 'login']); // Ação do login
-Route::post('/create', [ItenController::class, 'store']); // Ação do login
+Route::post('/create', [ItenController::class, 'store'])->middleware('auth'); // Ação do criar item
+Route::delete('/delete{$id}', [ItenController::class, 'destroy'])->middleware('auth'); // Ação do remover item
+Route::get('/pdf', [ItenController::class, 'gerarPDF'])->middleware('auth'); // Ação de baxar pdf item
