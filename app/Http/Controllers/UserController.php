@@ -86,13 +86,27 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $userSelected = User::findOrFail($id);
-        $credenciaisSelected = $userSelected->only(['id', 'is_gerente']);
+        $user = auth()->user();
+        $credenciais = $user->only(['id', 'is_gerente']);
 
-        $user = User::findOrFail($id);
-        $user->delete();
-        return response()->json([
-            'Status' => 'Usuário removido com sucesso!',
-        ], 200);
+        $selectedUser = User::findOrFail($id);
+        $selectedUserCredenciais =
+            $selectedUser->only(['id', 'is_gerente']);
+        $selectedUser->delete();
+        if ($credenciais['is_gerente'] == 1) {
+            response()->json([
+                'Status' => 'Usuário removido com sucesso!',
+            ], 200);
+        } elseif ($selectedUserCredenciais['is_gerente'] == 1) {
+            response()->json([
+                'Status' => 'Sem permição pra remoção!',
+            ], 404);
+        } else {
+            response()->json([
+                'Status' => 'Sem permição pra remoção!',
+            ], 404);
+        }
+
+        return redirect('/funcionarios');
     }
 }

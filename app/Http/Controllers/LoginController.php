@@ -59,7 +59,8 @@ class LoginController extends Controller
         try {
             auth()->logout();
             auth()->logout(true);
-            return response('deslogado com sucesso!', 200);
+            response('deslogado com sucesso!', 200);
+            return redirect('/');
         } catch (\Throwable $th) {
             return response('$th ', 401);
         }

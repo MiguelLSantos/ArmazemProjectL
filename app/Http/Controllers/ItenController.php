@@ -54,7 +54,7 @@ class ItenController extends Controller
         $selectIten = Iten::findOrFail($id);
         $selectIten->update($request->all());
 
-        return $selectIten;
+        return redirect('/');
     }
 
     /**
@@ -62,7 +62,8 @@ class ItenController extends Controller
      */
     public function destroy(string $id)
     {
-        return Iten::destroy($id);
+        Iten::destroy($id);
+        return redirect('/');
     }
 
     public function gerarPDF()
@@ -83,8 +84,8 @@ class ItenController extends Controller
             } else {
                 $pdf = Pdf::loadView('model.pdf', ['itens' => $itens])->setPaper('a4', 'portrait');
 
-                 $pdf->download('relatorio_de_itens.pdf');
-                return redirect('/');
+                return $pdf->download('relatorio_de_itens.pdf');
+
             }
         }
 

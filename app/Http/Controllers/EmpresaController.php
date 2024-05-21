@@ -34,12 +34,17 @@ class EmpresaController extends Controller
         return Empresa::findOrFail($id);
     }
 
-    public function showFuncionarios(string $id)
+    public function showFuncionarios()
     {
+        $user = auth()->user();
+        $credenciais = $user->only(['id', 'empresa_id']);
         $users =
-            User::where('empresa_id', $id)->get();
-        return response()->json(['users' => $users ,],200);
+            User::where('empresa_id', $credenciais['empresa_id'])->get();
+        response()->json(['users' => $users,], 200);
+        return
+            view('funcionarios', ['users' => $users]);
     }
+
     public function showFuncionariosGerentes(string $id)
     {
         $users =  User::where('empresa_id', $id)->get();
@@ -65,7 +70,7 @@ class EmpresaController extends Controller
             } else {
 
                 return
-                view('welcome', ['itens' => $itens]);
+                    view('welcome', ['itens' => $itens]);
                 // return response()->json([
                 //     'itens' => $itens
                 // ], 200);
