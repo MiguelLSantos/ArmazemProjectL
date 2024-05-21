@@ -22,7 +22,8 @@ Route::post('/cadastro/createUser', [UserController::class, 'store']);// Ação 
 Route::post('/cadastro/loginUser', [LoginController::class, 'login']); // Ação do login
 Route::post('/logout', [LoginController::class, 'logout'])->name('sairDaConta')->middleware('auth'); // Ação do logout
 Route::post('/create', [ItenController::class, 'store'])->middleware('auth'); // Ação do criar item
-Route::put('/edit{id}', [ItenController::class, 'update'])->middleware('auth'); // Ação de edição criar item
+Route::put('/edit{id}', [ItenController::class, 'update'])->middleware('auth'); // Ação de edição de item
 Route::delete('/delete{id}', [ItenController::class, 'destroy'])->name('removerItem')->middleware('auth'); // Ação do remover item
 Route::get('/pdf', [ItenController::class, 'gerarPDF'])->name('ralatorioPDF')->middleware('auth'); // Ação de baxar pdf item
-Route::delete('/delete/user{id}', [UserController::class, 'destroy'])->name('removerUser')->middleware(GerenteMiddleware::class)->middleware('auth'); // Ação do remover funcionario
+Route::delete('/user/delete{id}', [UserController::class, 'destroy'])->name('removerUser')->middleware(GerenteMiddleware::class)->middleware('auth'); // Ação do remover funcionario
+Route::put('/editUser{id}', [UserController::class, 'update'])->middleware('auth'); // Ação de edição de funcionario
