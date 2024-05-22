@@ -76,11 +76,9 @@
                                         @else
                                             <h3 class="mb-5 text-lg font-normal text-gray-500">Você deseja promover
                                                 {{ $user->name }} ?</h3>
-                                            <form action="/editUser/{{$user->id}}" method="POST">
+                                            <form action="/funcionarios/edit{{$user->id}}" method="POST">
                                                 @csrf
                                                 @method('PUT')
-
-                                                
                                                 <input type="hidden" id="is_gerente" name="is_gerente" value="{{true}}">
                                                 <button data-modal-hide="popup-edit-modal-{{ $user->id }}"
                                                     type="submit"

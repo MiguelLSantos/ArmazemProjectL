@@ -26,4 +26,4 @@ Route::put('/edit{id}', [ItenController::class, 'update'])->middleware('auth'); 
 Route::delete('/delete{id}', [ItenController::class, 'destroy'])->name('removerItem')->middleware('auth'); // Ação do remover item
 Route::get('/pdf', [ItenController::class, 'gerarPDF'])->name('ralatorioPDF')->middleware('auth'); // Ação de baxar pdf item
 Route::delete('/user/delete{id}', [UserController::class, 'destroy'])->name('removerUser')->middleware(GerenteMiddleware::class)->middleware('auth'); // Ação do remover funcionario
-Route::put('/editUser{id}', [UserController::class, 'update'])->middleware('auth'); // Ação de edição de funcionario
+Route::put('/funcionarios/edit{id}', [UserController::class, 'update'])->middleware('auth')->middleware(GerenteMiddleware::class); // Ação de edição de funcionario

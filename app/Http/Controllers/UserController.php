@@ -65,20 +65,19 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id)
     {
-        $user = auth()->user();
-        $selectUser = User::findOrFail($id);
-        $credenciais = $user->only(['is_gerente']);
-        if ($credenciais['is_gerente'] == '0') {
-            return response()->json([
-                'Erro' => 'Permição negada'
-            ], 404);
-        } else {
-            $selectUser->update($request->all());
+        try {
+            $selectUser = User::findOrFail($id);
+            $selectUser->update(['is_gerente' => true]);
+            return redirect('/funcionarios');
+        } catch (\Throwable $th) {
+            error_log('Erro: ' . $th->getMessage());
             return redirect('/funcionarios');
         }
     }
+
+
 
     /**
      * Remove the specified resource from storage.
