@@ -5,34 +5,33 @@
         <div class="flex flex-col gap-3"> {{-- Div da cabeça da página --}}
             <h1 class="text-2xl text-center">Lista de itens</h1>
             <h2 class="flex justify-center">Total de {{ count($itens) }} itens cadastrados</h2>
-            <div class="flex justify-end pr-10 gap-3">{{-- Div dos botões --}}
+
+
+            <div class="inline-flex rounded-md  justify-end pr-10" role="group"> {{-- Div dos botões --}}
                 <form action="">
-                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button"
-                        class="text-white inline-flex items-center bg-sky-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        <div class="flex justify-center">
+                <button type="button" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
                             <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <p>Adicionar item</p>
-                        </div>
-                    </button>
+                    Adicionar item
+                </button>
                 </form>
                 <form action="{{ route('ralatorioPDF') }}" method="GET">
-                    <button type="submit"
-                        class="text-white inline-flex items-center bg-sky-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        <div class="flex justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                                <path
-                                    d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z" />
-                                <path
-                                    d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z" />
-                            </svg>
-                            <p> Gerar PDF</p>
-                        </div>
-                    </button>
+                <button type="submit"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700>
+                    <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
+                        <path
+                            d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+                    </svg>
+                    Gerar PDF
+                </button>
                 </form>
             </div>
             <div class="p-10"> {{-- Div da tabela --}}
@@ -102,8 +101,9 @@
                                             <button type="button"
                                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                                 data-modal-toggle="crud-modal-{{ $item->id }}">
-                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 14 14">
+                                                <svg class="w-3 h-3" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 14 14">
                                                     <path stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2"
                                                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -112,7 +112,7 @@
                                             </button>
                                         </div>
                                         <!-- Modal body -->
-                                        <form class="p-4 md:p-5" method="POST" action="/edit{{$item->id}}">
+                                        <form class="p-4 md:p-5" method="POST" action="/edit{{ $item->id }}">
                                             @csrf
                                             @method('PUT')
                                             <div class="p-5">
@@ -121,7 +121,8 @@
                                                         class="block mb-2 text-sm font-medium text-gray-900">Código</label>
                                                     <input type="number" name="codigo" id="codigo"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                        placeholder="Código do item" value="{{ $item->codigo }}" required="">
+                                                        placeholder="Código do item" value="{{ $item->codigo }}"
+                                                        required="">
                                                 </div>
                                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                                     <div class="col-span-2">
@@ -129,28 +130,32 @@
                                                             class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
                                                         <input type="text" name="nome" id="nome"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                            placeholder="Nome do item" value="{{ $item->nome }}" required="">
+                                                            placeholder="Nome do item" value="{{ $item->nome }}"
+                                                            required="">
                                                     </div>
                                                     <div class="col-span-2">
                                                         <label for="categoria"
                                                             class="block mb-2 text-sm font-medium text-gray-900">Categoria</label>
                                                         <input type="text" name="categoria" id="categoria"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                            placeholder="Categoria" value="{{ $item->categoria }}" required="">
+                                                            placeholder="Categoria" value="{{ $item->categoria }}"
+                                                            required="">
                                                     </div>
                                                     <div class="col-span-2">
                                                         <label for="descricao"
                                                             class="block mb-2 text-sm font-medium text-gray-900">Descrição</label>
                                                         <input type="text" name="descricao" id="descricao"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                            placeholder="Descrição" value="{{ $item->descricao }}" required="">
+                                                            placeholder="Descrição" value="{{ $item->descricao }}"
+                                                            required="">
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="preco"
                                                             class="block mb-2 text-sm font-medium text-gray-900">Preço</label>
                                                         <input type="number" name="preco" id="preco"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                            placeholder="R$0000" value="{{ $item->preco }}" required="">
+                                                            placeholder="R$0000" value="{{ $item->preco }}"
+                                                            required="">
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="qtdunitaria"
@@ -158,7 +163,8 @@
                                                             de unidades</label>
                                                         <input type="number" name="qtdunitaria" id="qtdunitaria"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                                            placeholder="Unidades" value="{{ $item->qtdunitaria }}" required="">
+                                                            placeholder="Unidades" value="{{ $item->qtdunitaria }}"
+                                                            required="">
                                                     </div>
                                                 </div>
                                                 <button type="submit"
