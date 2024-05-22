@@ -78,9 +78,10 @@ class ItenController extends Controller
         } else {
             $itens = Iten::where('empresa_id', $credenciais['empresa_id'])->get();
             if ($itens->isEmpty()) {
-                return response()->json([
+                response()->json([
                     'Erro' => 'Empresa não tem itens cadastrados'
                 ], 401);
+                return redirect('/');
             } else {
                 $pdf = Pdf::loadView('model.pdf', ['itens' => $itens])->setPaper('a4', 'portrait');
 

@@ -64,9 +64,12 @@ class EmpresaController extends Controller
         } else {
             $itens = Iten::where('empresa_id', $credenciais['empresa_id'])->get();
             if ($itens->isEmpty()) {
-                return response()->json([
+
+                 response()->json([
                     'Erro' => 'Empresa não tem itens cadastrados'
                 ], 401);
+                return
+                    view('welcome', ['itens' => $itens]);
             } else {
 
                 return

@@ -114,7 +114,8 @@
                                                     data-modal-toggle="crud-modal-{{ $item->id }}"
                                                     data-modal-hide="default-modal-{{ $item->id }}"
                                                     class="text-black bg-white-700 hover:bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium border border-black  rounded-lg text-sm px-5 py-2.5 text-center">Editar</button>
-                                                <button type="button" data-modal-target="popup-modal-{{ $item->id }}"
+                                                <button type="button"
+                                                    data-modal-target="popup-modal-{{ $item->id }}"
                                                     data-modal-toggle="popup-modal-{{ $item->id }}"
                                                     data-modal-hide="default-modal-{{ $item->id }}"
                                                     class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-red-500 rounded-lg border border-red-200 hover:bg-red-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-red-100">Remover</button>
