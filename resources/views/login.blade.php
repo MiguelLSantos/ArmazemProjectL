@@ -52,7 +52,7 @@
     <h1 class="text-2xl text-center">Faça o seu login</h1>
     <form class="flex flex-col items-center justify-center gap-5" method="POST" action="/cadastro/loginUser">
         @csrf
-        <div class="w-4/12">
+        <div class="w-80 md:w-50 lg:w-80">
             <label for="email">
                 <span class="text-sm font-medium text-slate-700">Email</span>
             </label>
@@ -62,7 +62,7 @@
                 placeholder="seu@email.com" />
 
         </div>
-        <div class="w-4/12">
+        <div class="w-80 md:w-50 lg:w-80">
             <label for="password">
                 <span class="text-sm font-medium text-slate-700">Senha</span>
             </label>
@@ -72,7 +72,7 @@
                 placeholder="Sua senha" />
 
         </div>
-        <div class="w-4/12 flex justify-end">
+        <div class="w-80 md:w-50 lg:w-80 flex justify-end">
             <button type="submit" class="bg-sky-500 hover:bg-sky-700 p-1 rounded-lg text-white">
                 Entrar
             </button>
