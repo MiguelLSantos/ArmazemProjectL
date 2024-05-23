@@ -16,6 +16,7 @@ Route::get('/login', function () {
     return view('login'); // Login
 })->name('login');
 Route::get('/funcionarios', [EmpresaController::class, 'showFuncionarios'])->middleware(GerenteMiddleware::class)->middleware('auth');
+Route::get('/graficos', [EmpresaController::class, 'showGraficos'])->middleware(GerenteMiddleware::class)->middleware('auth');
 
 //Ações
 Route::post('/cadastro/createUser', [UserController::class, 'store']);// Ação do cadastro

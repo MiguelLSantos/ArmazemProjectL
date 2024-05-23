@@ -80,6 +80,34 @@ class EmpresaController extends Controller
             }
         }
     }
+    public function showGraficos()
+    {
+        $user = auth()->user();
+        $credenciais = $user->only(['id', 'empresa_id']);
+        $empresa = Empresa::find($credenciais['empresa_id']);
+        if (is_null($empresa)) {
+            return response()->json([
+                'Erro' => 'Empresa não encontrada'
+            ], 404);
+        } else {
+            $itens = Iten::where('empresa_id', $credenciais['empresa_id'])->get();
+            if ($itens->isEmpty()) {
+
+                response()->json([
+                    'Erro' => 'Empresa não tem itens cadastrados'
+                ], 401);
+                return
+                    view('welcome', ['itens' => $itens]);
+            } else {
+
+                return
+                    view('graficos', ['itens' => $itens]);
+                // return response()->json([
+                //     'itens' => $itens
+                // ], 200);
+            }
+        }
+    }
 
 
     /**

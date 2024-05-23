@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @vite('resources/css/app.css')
     <title>@yield('title')</title>
     <style>
@@ -44,11 +45,14 @@
             @auth
 
                 <li>
-                    <a href="/" class="p-3">Lista de itens</a>
+                    <a href="/" class="p-3">Itens</a>
                 </li>
                 @if (auth()->user()->is_gerente)
                     <li>
                         <a href="/funcionarios" class="p-3">Funcionarios</a>
+                    </li>
+                    <li>
+                        <a href="/graficos" class="p-3">Gráficos</a>
                     </li>
                 @endif
             @endauth
