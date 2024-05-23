@@ -301,7 +301,7 @@
                             </div>
                         @empty
                             <tr>
-                                <td colspan="7" class="px-6 py-4 text-center text-sm text-gray-500">Nenhum item
+                                <td colspan="7" class="px-6 py-4 text-center text-sm text-gray-500">Nenhum funcionarios
                                     cadastrado
                                 </td>
                             </tr>

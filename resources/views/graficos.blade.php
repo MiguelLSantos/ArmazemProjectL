@@ -4,6 +4,7 @@
 @section('content')
 
     @if ($agent->isMobile())
+       <h1 class="text-2xl text-center">Gráfico de itens cadastrados</h1>
         <canvas class="p-10" id="myChartMobile" width="500" height="200"></canvas>
         <script>
             var ctx = document.getElementById('myChartMobile').getContext('2d');
@@ -22,7 +23,6 @@
                                 {{ $item['qtdunitaria'] }},
                             @endforeach
                         ],
-
                     }]
                 },
                 options: {
@@ -31,6 +31,7 @@
             });
         </script>
     @else
+        <h1 class="text-2xl text-center">Gráfico de itens cadastrados</h1>
         <canvas class="p-10" id="myChartDescktop" width="500" height="200"></canvas>
         <script>
             var ctx = document.getElementById('myChartDescktop').getContext('2d');
