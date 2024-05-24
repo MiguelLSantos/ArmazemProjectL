@@ -29,7 +29,7 @@
 </head>
 
 <body class="bg-cyan-50 flex flex-col justify-center">
-    <nav class="p-6 bg-teal-500 flex justify-between mb-6 text-white">
+    <nav class="p-6 bg-teal-500 flex justify-between  text-white">
         <ul class="flex items-center">
             @if ($agent->isMobile())
                 <div class="text-center">

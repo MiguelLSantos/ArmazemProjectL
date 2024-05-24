@@ -97,7 +97,7 @@ class EmpresaController extends Controller
                     'Erro' => 'Empresa não tem itens cadastrados'
                 ], 401);
                 return
-                    view('welcome', ['itens' => $itens]);
+                    view('graficos', ['itens' => $itens]);
             } else {
 
                 return
