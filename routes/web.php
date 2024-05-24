@@ -11,6 +11,7 @@ use App\Http\Controllers\InitController;
 
 //Pages
 Route::get('/init', [InitController::class, 'page'] )->name('init');
+Route::get('/sobre', [InitController::class, 'sobrePage'])->name('sobre');
 Route::get('/', [EmpresaController::class, 'showItens'])->middleware(Authenticate::class);
 Route::get('/cadastro', function () {
     return view('cadastro'); // Cadastro
